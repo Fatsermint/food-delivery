@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://ca5a7802bok12"
-path="res://.godot/imported/Body_010.fbx-269b5a5ba72d15de6eba949ad15c9bc5.scn"
+uid="uid://bt8ufhbxljfv5"
+path="res://.godot/imported/Gloves_006.fbx-01c3058af78faea7050299270b23a952.scn"
 
 [deps]
 
-source_file="res://Models/body/Body_010.fbx"
-dest_files=["res://.godot/imported/Body_010.fbx-269b5a5ba72d15de6eba949ad15c9bc5.scn"]
+source_file="res://Models/body/Gloves_006.fbx"
+dest_files=["res://.godot/imported/Gloves_006.fbx-01c3058af78faea7050299270b23a952.scn"]
 
 [params]
 

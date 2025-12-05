@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://vjk7aep7uqc2"
-path="res://.godot/imported/Gloves_006.fbx-4ff55e5b2d0b9c37dfa770528b922d09.scn"
+uid="uid://bv3lnp3a0ivyj"
+path="res://.godot/imported/Male_emotion_usual_001.fbx-d29e81e7874dafb95677229b5062047a.scn"
 
 [deps]
 
-source_file="res://Models/body/glasses/Gloves_006.fbx"
-dest_files=["res://.godot/imported/Gloves_006.fbx-4ff55e5b2d0b9c37dfa770528b922d09.scn"]
+source_file="res://Models/body/Male_emotion_usual_001.fbx"
+dest_files=["res://.godot/imported/Male_emotion_usual_001.fbx-d29e81e7874dafb95677229b5062047a.scn"]
 
 [params]
 
