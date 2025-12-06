@@ -26,19 +26,28 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.184803, 0)
 
 [node name="orderTime" type="Timer" parent="."]
 autostart = true
+ignore_time_scale = true
 
 [node name="Minimap" type="SubViewportContainer" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
-scale = Vector2(0.6971429, 0.4208696)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 509.06543
+offset_bottom = 891.6693
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.2171427, 0.14086965)
+stretch = true
 script = ExtResource("5_21xkr")
 
 [node name="SubViewport" type="SubViewport" parent="Minimap"]
 handle_input_locally = false
+size = Vector2i(1661, 1539)
 render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="Minimap/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 11.720586, 0)
 
 [connection signal="newOrder" from="." to="DeliveryUI" method="_on_new_order"]
+[connection signal="orderDropped" from="." to="DeliveryUI" method="_on_main_order_dropped"]
 [connection signal="timeout" from="orderTime" to="." method="_on_order_time_timeout"]

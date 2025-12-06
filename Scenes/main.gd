@@ -1,6 +1,5 @@
 extends Node3D
 
-@onready var deliveryObjects: Node3D = $"Delivery Objects"
 @onready var vespa: VehicleBody3D = $Vespa
 
 @export var ui: Control
@@ -10,20 +9,20 @@ extends Node3D
 var restaurants = 1
 var houses = 14
 signal newOrder
-
+signal orderDropped
 func _ready() -> void:
 
 	$orderTime.wait_time = randi_range(1,2)
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("E"):
+	if Input.is_action_just_pressed("DO"):
 		print(pickingArea.get_overlapping_bodies())
 		if pickingArea.get_overlapping_bodies().has(vespa):
 			print("pick up") 
-			GlobalVariables.pickDrop[0] = 0
-			print(GlobalVariables.pickDrop)
+			GlobalVariables.selecterpicDrop[0] = 0
+			print(GlobalVariables.selecterpicDrop)
 		if droppingArea.get_overlapping_bodies().has(vespa):
 			print("drop off")
-
+			orderDropped.emit()
 
 
 func _new_order():
@@ -37,6 +36,7 @@ func _new_order():
 	GlobalVariables.orderValue = 2.25 + randi_range(0,10)
 	newOrder.emit()
 func _on_order_time_timeout() -> void:
-	_new_order()
-	$orderTime.wait_time = randi_range(15,45)
+	if GlobalVariables.Delivering == true:
+		_new_order()
+	$orderTime.wait_time = randi_range(1,2)
 	

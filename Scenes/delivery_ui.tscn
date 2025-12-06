@@ -1,7 +1,108 @@
-[gd_scene load_steps=3 format=3 uid="uid://1k56q80k4r6q"]
+[gd_scene load_steps=12 format=3 uid="uid://1k56q80k4r6q"]
 
 [ext_resource type="Script" uid="uid://dv2nyio3p6f3r" path="res://Scenes/delivery_ui.gd" id="1_catb1"]
 [ext_resource type="FontFile" uid="uid://b00g5xd47a3bs" path="res://Textures/fonts/ScienceGothic-VariableFont_CTRS,slnt,wdth,wght.ttf" id="1_o1t0g"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vey14"]
+bg_color = Color(0.46717998, 0.71, 0.45439997, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5xs6v"]
+bg_color = Color(0, 1, 0.2166667, 0.6)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pln1n"]
+bg_color = Color(0.71, 0.45439997, 0.45439997, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y7tcn"]
+bg_color = Color(0.6, 0, 0, 0.6117647)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_catb1"]
+bg_color = Color(0.32160002, 0.67, 0.37966663, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.1488, 0.31, 0.17566665, 1)
+border_blend = true
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[sub_resource type="Animation" id="Animation_catb1"]
+resource_name = "show"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_5xs6v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_vey14"]
+resource_name = "hide"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pln1n"]
+_data = {
+&"RESET": SubResource("Animation_5xs6v"),
+&"hide": SubResource("Animation_vey14"),
+&"show": SubResource("Animation_catb1")
+}
 
 [node name="DeliveryUI" type="Control"]
 layout_mode = 3
@@ -17,8 +118,9 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -40.0
+offset_top = -309.0
 offset_right = 144.0
+offset_bottom = -269.0
 grow_vertical = 0
 mouse_filter = 1
 color = Color(0, 0, 0, 0.47058824)
@@ -52,6 +154,7 @@ offset_bottom = 8.0
 scale = Vector2(17.960003, 5.0800004)
 
 [node name="ColorRect2" type="ColorRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -84,9 +187,9 @@ vertical_alignment = 1
 texture_filter = 1
 layout_mode = 0
 offset_left = 4.0
-offset_top = 284.0
+offset_top = 232.0
 offset_right = 462.0
-offset_bottom = 477.0
+offset_bottom = 425.0
 scale = Vector2(0.5, 0.5)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_o1t0g")
@@ -115,18 +218,118 @@ text = "10.12$"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+[node name="Accept" type="Button" parent="ColorRect2"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -55.0
+offset_right = 297.0
+offset_bottom = 60.0
+grow_vertical = 0
+scale = Vector2(0.48, 0.48)
+theme_override_fonts/font = ExtResource("1_o1t0g")
+theme_override_font_sizes/font_size = 67
+theme_override_styles/normal = SubResource("StyleBoxFlat_vey14")
+theme_override_styles/hover = SubResource("StyleBoxFlat_5xs6v")
+text = "Accept"
+
+[node name="Decline" type="Button" parent="ColorRect2"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 150.0
+offset_top = -55.0
+offset_right = 463.0
+offset_bottom = 60.0
+grow_vertical = 0
+scale = Vector2(0.48, 0.48)
+theme_override_fonts/font = ExtResource("1_o1t0g")
+theme_override_font_sizes/font_size = 67
+theme_override_styles/normal = SubResource("StyleBoxFlat_pln1n")
+theme_override_styles/hover = SubResource("StyleBoxFlat_y7tcn")
+text = "Decline"
+
+[node name="ColorRect3" type="Panel" parent="."]
 layout_mode = 0
-offset_left = 897.0
-offset_top = 380.0
-offset_right = 1409.0
-offset_bottom = 892.0
-scale = Vector2(0.4, 0.25)
+offset_top = 385.0
+offset_right = 212.0
+offset_bottom = 437.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_catb1")
 
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
-handle_input_locally = false
-render_target_update_mode = 4
+[node name="Label" type="Label" parent="ColorRect3"]
+texture_filter = 1
+layout_mode = 0
+offset_right = 350.0
+offset_bottom = 95.0
+scale = Vector2(0.59999967, 0.56000006)
+theme_override_fonts/font = ExtResource("1_o1t0g")
+theme_override_font_sizes/font_size = 64
+text = "Loading.."
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
+[node name="CurrentOrder" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = -206.0
+offset_right = 39.0
+offset_bottom = -166.0
+grow_vertical = 0
+scale = Vector2(5.7436357, 5.070153)
+
+[node name="Label" type="Label" parent="CurrentOrder"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+scale = Vector2(0.06638537, 0.06638537)
+theme_override_fonts/font = ExtResource("1_o1t0g")
+theme_override_font_sizes/font_size = 80
+text = "From ----
+To----"
+
+[node name="Label2" type="Label" parent="CurrentOrder"]
+layout_mode = 0
+offset_top = 16.17308
+offset_right = 424.0
+offset_bottom = 259.1731
+scale = Vector2(0.09424207, 0.088202894)
+theme_override_colors/font_color = Color(0, 1, 0.1833334, 1)
+theme_override_fonts/font = ExtResource("1_o1t0g")
+theme_override_font_sizes/font_size = 120
+text = "12.12$"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+offset_left = 249.0
+offset_top = 260.99997
+offset_right = 2319.0
+offset_bottom = 356.0
+scale = Vector2(0.35, 0.35)
+theme_override_fonts/font = ExtResource("1_o1t0g")
+theme_override_font_sizes/font_size = 64
+text = "Picked up the food! Now head drop it of at the right place!"
+horizontal_alignment = 1
+vertical_alignment = 1
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Label"]
+libraries = {
+&"": SubResource("AnimationLibrary_pln1n")
+}
+
+[node name="Timer" type="Timer" parent="Label"]
+wait_time = 5.0
+one_shot = true
 
 [connection signal="pressed" from="ColorRect/Button" to="." method="_on_Delivery_button_pressed"]
+[connection signal="pressed" from="ColorRect2/Accept" to="." method="_on_accept_pressed"]
+[connection signal="pressed" from="ColorRect2/Decline" to="." method="_on_decline_pressed"]
+[connection signal="timeout" from="Label/Timer" to="." method="_on_timer_timeout"]
