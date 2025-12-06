@@ -1,0 +1,10 @@
+extends VehicleBody3D
+
+var max_rpm = 300
+var max_torque = 150
+
+func _physics_process(delta: float) -> void:
+	steering = lerp(steering, Input.get_axis("right", "left") * 0.4, 5 * delta)
+	var acceleration = Input.get_axis("down", "forward") * 100
+	var rpm = $VehicleWheel3D.get_rpm()
+	$VehicleWheel3D.engine_force = acceleration * max_torque * (1 - rpm / max_rpm)
