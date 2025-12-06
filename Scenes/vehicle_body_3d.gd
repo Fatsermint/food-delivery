@@ -1,7 +1,7 @@
 extends VehicleBody3D
 
-var max_rpm = 300
-var max_torque = 150
+var max_rpm = 200
+var max_torque = 75
 
 func _physics_process(delta: float) -> void:
 	steering = lerp(steering, Input.get_axis("right", "left") * 0.4, 5 * delta)
