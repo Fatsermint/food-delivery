@@ -1,0 +1,50 @@
+[gd_scene load_steps=2 format=3 uid="uid://1k56q80k4r6q"]
+
+[ext_resource type="FontFile" uid="uid://b00g5xd47a3bs" path="res://Textures/fonts/ScienceGothic-VariableFont_CTRS,slnt,wdth,wght.ttf" id="1_o1t0g"]
+
+[node name="DeliveryUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 144.0
+grow_vertical = 0
+mouse_filter = 1
+color = Color(0, 0, 0, 0.47058824)
+
+[node name="Label" type="Label" parent="ColorRect"]
+modulate = Color(0, 1, 0.21568628, 1)
+z_index = 1
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.020833334
+anchor_top = 0.22500002
+anchor_right = 0.978608
+anchor_bottom = 0.7969982
+offset_right = 724.08044
+offset_bottom = 120.12007
+scale = Vector2(0.15904406, 0.15999949)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_o1t0g")
+theme_override_font_sizes/font_size = 96
+text = "Start Delivering"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Button" type="Button" parent="ColorRect"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+scale = Vector2(17.960003, 5.0800004)

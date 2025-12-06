@@ -1,12 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://dxd3bjr3h6tlf"]
+[gd_scene load_steps=6 format=3 uid="uid://dxd3bjr3h6tlf"]
 
 [ext_resource type="Script" uid="uid://ces8nom8r2mhl" path="res://Scenes/main.gd" id="1_jjvhh"]
 [ext_resource type="PackedScene" uid="uid://bb186debtmgoh" path="res://Scenes/map.tscn" id="2_jjvhh"]
 [ext_resource type="Script" uid="uid://bn1d3136td1vn" path="res://Scenes/map.gd" id="3_kry3j"]
 [ext_resource type="PackedScene" uid="uid://bgk5vjb8qwo3g" path="res://Scenes/vespa.tscn" id="4_jjvhh"]
+[ext_resource type="PackedScene" uid="uid://1k56q80k4r6q" path="res://Scenes/delivery_ui.tscn" id="5_kry3j"]
 
-[node name="Main" type="Node3D"]
+[node name="Main" type="Node3D" node_paths=PackedStringArray("ui")]
 script = ExtResource("1_jjvhh")
+ui = NodePath("DeliveryUI")
 
 [node name="Map" parent="." instance=ExtResource("2_jjvhh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9015162, 0)
@@ -19,3 +21,5 @@ size = Vector3(7.9522095, 1, 17.319824)
 
 [node name="Vespa" parent="." instance=ExtResource("4_jjvhh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.184803, 0)
+
+[node name="DeliveryUI" parent="." instance=ExtResource("5_kry3j")]
