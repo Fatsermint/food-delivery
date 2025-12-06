@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://1k56q80k4r6q"]
+[gd_scene load_steps=3 format=3 uid="uid://1k56q80k4r6q"]
 
+[ext_resource type="Script" uid="uid://dv2nyio3p6f3r" path="res://Scenes/delivery_ui.gd" id="1_catb1"]
 [ext_resource type="FontFile" uid="uid://b00g5xd47a3bs" path="res://Textures/fonts/ScienceGothic-VariableFont_CTRS,slnt,wdth,wght.ttf" id="1_o1t0g"]
 
 [node name="DeliveryUI" type="Control"]
@@ -9,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_catb1")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -48,3 +50,83 @@ layout_mode = 0
 offset_right = 8.0
 offset_bottom = 8.0
 scale = Vector2(17.960003, 5.0800004)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -300.0
+offset_top = -400.0
+grow_horizontal = 0
+grow_vertical = 0
+color = Color(0.26, 0.26, 0.26, 1)
+
+[node name="head" type="Label" parent="ColorRect2"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 3.9999995
+offset_top = 0.99999994
+offset_right = 917.0
+offset_bottom = 209.0
+scale = Vector2(0.3200006, 0.3200006)
+theme_override_colors/font_color = Color(0.00999999, 1, 0.967, 1)
+theme_override_constants/outline_size = 15
+theme_override_fonts/font = ExtResource("1_o1t0g")
+theme_override_font_sizes/font_size = 140
+text = "New Order!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="locations" type="Label" parent="ColorRect2"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 4.0
+offset_top = 284.0
+offset_right = 462.0
+offset_bottom = 477.0
+scale = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_o1t0g")
+theme_override_font_sizes/font_size = 50
+text = "From: -------
+To: ----"
+
+[node name="value" type="Label" parent="ColorRect2"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -236.0
+offset_top = -134.0
+offset_right = 107.0
+offset_bottom = 9.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(0.09411765, 1, 0.011764706, 1)
+theme_override_fonts/font = ExtResource("1_o1t0g")
+theme_override_font_sizes/font_size = 80
+text = "10.12$"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+layout_mode = 0
+offset_left = 897.0
+offset_top = 380.0
+offset_right = 1409.0
+offset_bottom = 892.0
+scale = Vector2(0.4, 0.25)
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
+
+[connection signal="pressed" from="ColorRect/Button" to="." method="_on_Delivery_button_pressed"]

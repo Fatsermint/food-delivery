@@ -1,22 +1,42 @@
 extends Node3D
 
+@onready var deliveryObjects: Node3D = $"Delivery Objects"
+@onready var vespa: VehicleBody3D = $Vespa
 
 @export var ui: Control
+@export var map: Node3D
+@onready var pickingArea = map.get_picking_area()
+@onready var droppingArea = map.get_dropping_area()
+var restaurants = 1
+var houses = 14
+signal newOrder
 
-@onready var button = ui.get_child(0).get_child(1)
-@onready var label = ui.get_child(0).get_child(0)
+func _ready() -> void:
 
-
-
+	$orderTime.wait_time = randi_range(1,2)
 func _process(delta: float) -> void:
-	button.pressed.connect(delivery_button_pressed)
+	if Input.is_action_just_pressed("E"):
+		print(pickingArea.get_overlapping_bodies())
+		if pickingArea.get_overlapping_bodies().has(vespa):
+			print("pick up") 
+			GlobalVariables.pickDrop[0] = 0
+			print(GlobalVariables.pickDrop)
+		if droppingArea.get_overlapping_bodies().has(vespa):
+			print("drop off")
+
+
+
+func _new_order():
 	
-func delivery_button_pressed():
-		if GlobalVariables.Delivering == false:
-			label.text = "Stop Delivering"
-			label.modulate = Color(0.96, 0.0, 0.0, 1.0)
-			GlobalVariables.Delivering = true
-		else:
-			label.text = "Start Delivering"
-			label.modulate = Color("00ff37")
-			GlobalVariables.Delivering = false
+	print("New Order")
+	var pickUp
+	var dropOff
+	pickUp = randi_range(1, restaurants)
+	dropOff = randi_range(14, houses)
+	GlobalVariables.pickDrop = [pickUp, dropOff]
+	GlobalVariables.orderValue = 2.25 + randi_range(0,10)
+	newOrder.emit()
+func _on_order_time_timeout() -> void:
+	_new_order()
+	$orderTime.wait_time = randi_range(15,45)
+	
