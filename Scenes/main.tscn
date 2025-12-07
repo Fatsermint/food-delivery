@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dxd3bjr3h6tlf"]
+[gd_scene load_steps=7 format=3 uid="uid://dxd3bjr3h6tlf"]
 
 [ext_resource type="Script" uid="uid://ces8nom8r2mhl" path="res://Scenes/main.gd" id="1_jjvhh"]
 [ext_resource type="PackedScene" uid="uid://bb186debtmgoh" path="res://Scenes/map.tscn" id="2_jjvhh"]
 [ext_resource type="PackedScene" uid="uid://bgk5vjb8qwo3g" path="res://Scenes/vespa.tscn" id="4_jjvhh"]
 [ext_resource type="Script" uid="uid://cn4nbm51u7mbw" path="res://Scenes/minimap.gd" id="5_21xkr"]
 [ext_resource type="PackedScene" uid="uid://1k56q80k4r6q" path="res://Scenes/delivery_ui.tscn" id="5_kry3j"]
+[ext_resource type="PackedScene" uid="uid://oqx0mjd5qd75" path="res://Scenes/control.tscn" id="6_21xkr"]
 
 [node name="Main" type="Node3D" node_paths=PackedStringArray("ui", "map")]
 script = ExtResource("1_jjvhh")
@@ -46,9 +47,16 @@ size = Vector2i(1661, 1539)
 render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="Minimap/SubViewport"]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 37.995, 142.34, 0)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 37.995, 67, 0)
+cull_mask = 1032191
+
+[node name="Control" parent="." instance=ExtResource("6_21xkr")]
 
 [connection signal="newOrder" from="." to="DeliveryUI" method="_on_new_order"]
+[connection signal="orderDropped" from="." to="Map" method="_on_order_dropped"]
 [connection signal="orderDropped" from="." to="DeliveryUI" method="_on_main_order_dropped"]
 [connection signal="orderPicked" from="." to="Map" method="_on_order_picked"]
+[connection signal="orderPicked" from="Map" to="DeliveryUI" method="_on_order_picked"]
+[connection signal="orderAccepted" from="DeliveryUI" to="Map" method="_on_delivery_ui_order_accepted"]
 [connection signal="timeout" from="orderTime" to="." method="_on_order_time_timeout"]
+[connection signal="onPlayerReady" from="Control" to="Vespa" method="_on_control_on_player_ready"]

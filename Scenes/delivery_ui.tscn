@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://1k56q80k4r6q"]
+[gd_scene load_steps=13 format=3 uid="uid://1k56q80k4r6q"]
 
 [ext_resource type="Script" uid="uid://dv2nyio3p6f3r" path="res://Scenes/delivery_ui.gd" id="1_catb1"]
 [ext_resource type="FontFile" uid="uid://b00g5xd47a3bs" path="res://Textures/fonts/ScienceGothic-VariableFont_CTRS,slnt,wdth,wght.ttf" id="1_o1t0g"]
@@ -52,21 +52,6 @@ corner_radius_top_right = 7
 corner_radius_bottom_right = 7
 corner_radius_bottom_left = 7
 
-[sub_resource type="Animation" id="Animation_catb1"]
-resource_name = "show"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:visible_ratio")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 1.0]
-}
-
 [sub_resource type="Animation" id="Animation_5xs6v"]
 length = 0.001
 tracks/0/type = "value"
@@ -97,12 +82,34 @@ tracks/0/keys = {
 "values": [1.0, 0.0]
 }
 
+[sub_resource type="Animation" id="Animation_catb1"]
+resource_name = "show"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pln1n"]
 _data = {
 &"RESET": SubResource("Animation_5xs6v"),
 &"hide": SubResource("Animation_vey14"),
 &"show": SubResource("Animation_catb1")
 }
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0fucw"]
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
 
 [node name="DeliveryUI" type="Control"]
 layout_mode = 3
@@ -156,15 +163,12 @@ scale = Vector2(17.960003, 5.0800004)
 [node name="ColorRect2" type="ColorRect" parent="."]
 visible = false
 layout_mode = 1
-anchors_preset = 3
+anchors_preset = 1
 anchor_left = 1.0
-anchor_top = 1.0
 anchor_right = 1.0
-anchor_bottom = 1.0
 offset_left = -300.0
-offset_top = -400.0
+offset_bottom = 400.0
 grow_horizontal = 0
-grow_vertical = 0
 color = Color(0.26, 0.26, 0.26, 1)
 
 [node name="head" type="Label" parent="ColorRect2"]
@@ -310,9 +314,9 @@ theme_override_font_sizes/font_size = 50
 
 [node name="Label2" type="Label" parent="CurrentOrder"]
 layout_mode = 0
-offset_left = 2.4374804
+offset_left = 0.69642293
 offset_top = 23.273457
-offset_right = 426.43747
+offset_right = 424.6964
 offset_bottom = 266.27347
 scale = Vector2(0.085, 0.08)
 theme_override_colors/font_color = Color(0, 1, 0.1833334, 1)
@@ -361,6 +365,95 @@ libraries = {
 [node name="Timer" type="Timer" parent="Label2"]
 wait_time = 5.0
 one_shot = true
+
+[node name="Control" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Panel" type="Panel" parent="Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1073.0
+offset_top = 568.0
+offset_right = 1113.0
+offset_bottom = 608.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_0fucw")
+
+[node name="Label" type="Label" parent="Control/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 11.0
+offset_top = 2.0
+offset_right = 46.0
+offset_bottom = 105.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.25, 0.25)
+theme_override_fonts/font = ExtResource("1_o1t0g")
+theme_override_font_sizes/font_size = 96
+text = "E"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Control/Panel"]
+layout_mode = 0
+offset_left = -176.0
+offset_top = 8.0
+offset_right = -3.0
+offset_bottom = 33.0
+theme_override_fonts/font = ExtResource("1_o1t0g")
+text = "Pick/Drop Delivery"
+
+[node name="Panel2" type="Panel" parent="Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1073.0
+offset_top = 523.0
+offset_right = 1113.0
+offset_bottom = 563.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_0fucw")
+
+[node name="Label" type="Label" parent="Control/Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = -3.0
+offset_right = 89.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.25, 0.25)
+theme_override_fonts/font = ExtResource("1_o1t0g")
+theme_override_font_sizes/font_size = 36
+text = "WASD"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Control/Panel2"]
+layout_mode = 0
+offset_left = -119.0
+offset_top = 8.0
+offset_right = 54.0
+offset_bottom = 33.0
+theme_override_fonts/font = ExtResource("1_o1t0g")
+text = "Drive Moped"
 
 [connection signal="pressed" from="ColorRect/Button" to="." method="_on_Delivery_button_pressed"]
 [connection signal="pressed" from="ColorRect2/Accept" to="." method="_on_accept_pressed"]

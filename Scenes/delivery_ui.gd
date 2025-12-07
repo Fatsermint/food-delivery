@@ -25,7 +25,7 @@ func _on_Delivery_button_pressed() -> void:
 		GlobalVariables.Delivering = true
 		
 
-
+signal orderAccepted
 func _on_new_order() -> void:
 	$ColorRect2.visible = true
 	$ColorRect2/value.text = str(GlobalVariables.orderValue)+"$"
@@ -35,6 +35,7 @@ func _on_new_order() -> void:
 
 
 func _on_accept_pressed() -> void:
+	
 	$ColorRect2.visible = false
 	$CurrentOrder.visible = true
 	$CurrentOrder/Label2.visible = true
@@ -49,6 +50,11 @@ func _on_accept_pressed() -> void:
 	GlobalVariables.selecterpicDrop[1] = GlobalVariables.pickDrop[1]
 	print("a")
 	GlobalVariables.doingOrder = true
+	$Label2.text = "First head to the restaurant!"
+	$Label2.visible_ratio = 0
+	$Label2/AnimationPlayer.play("show")
+	$Label2/Timer.start()
+	orderAccepted.emit()
 func _on_decline_pressed() -> void:
 	$ColorRect2.visible = false
 	GlobalVariables.pickDrop[1]= 0
@@ -70,3 +76,10 @@ func _on_timer_timeout() -> void:
 	$Label2/AnimationPlayer.play("hide")
 	$Label2.visible_ratio = 0
 	
+
+
+func _on_order_picked() -> void:
+	$Label2.text = "Next head to the customer!"
+	$Label2.visible_ratio = 0
+	$Label2/AnimationPlayer.play("show")
+	$Label2/Timer.start()

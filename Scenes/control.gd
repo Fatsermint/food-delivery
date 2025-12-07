@@ -1,7 +1,7 @@
 extends Node
 
 @onready var node: Sprite2D = $Phoyo
-@onready var skinColorSlider: HSlider = $ColorRect/HSlider
+
 @onready var hairColorSlider = $ColorRect/ColorPickerButton
 @onready var possibleSkins: Node3D = $Possible
 
@@ -12,6 +12,7 @@ var outfit = {
 }
 func _ready() -> void:
 	get_all_children(node)
+	$Body/Skeleton3D/Body_010.material_override.albedo_color = colorP.color
 
 
 func get_all_children(in_node, arr := []):
@@ -43,21 +44,22 @@ func add_outfit(number, new_parent):
 		$Phoyo.get_node(str(number)).modulate = Color(0.0, 0.0, 0.0, 0.733)
 	
 	
-#var mat = get_node("Body/Skeleton3D/Body_010").get_surface_override_materal(0)
-func _on_h_slider_slider_changed(value: float) -> void:
-	print(skinColorSlider.value)
 
 
 
+
+signal  onPlayerReady
 
 @onready var colorP: ColorPickerButton = $ColorRect/ColorPickerButton
 
 func _on_color_picker_button_color_changed(color: Color) -> void:
-	print(colorP.color)
-	print($Body/Skeleton3D/Body_010.material_override.albedo_color)
 	
 	$Body/Skeleton3D/Body_010.material_override.albedo_color = colorP.color
 
 
 func _on_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scenes/main.tscn")
+	
+	onPlayerReady.emit($Body)
+	self.queue_free()
+func _on_restart_pressed() -> void:
+	get_tree().reload_current_scene()
