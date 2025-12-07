@@ -10,6 +10,7 @@ var restaurants = 1
 var houses = 14
 signal newOrder
 signal orderDropped
+signal orderPicked
 func _ready() -> void:
 
 	$orderTime.wait_time = randi_range(1,2)
@@ -20,23 +21,26 @@ func _process(delta: float) -> void:
 			print("pick up") 
 			GlobalVariables.selecterpicDrop[0] = 0
 			print(GlobalVariables.selecterpicDrop)
+			orderPicked.emit()
 		if droppingArea.get_overlapping_bodies().has(vespa):
 			print("drop off")
 			orderDropped.emit()
+			GlobalVariables.doingOrder = false
 
 
 func _new_order():
-	
-	print("New Order")
-	var pickUp
-	var dropOff
-	pickUp = randi_range(1, restaurants)
-	dropOff = randi_range(14, houses)
-	GlobalVariables.pickDrop = [pickUp, dropOff]
-	GlobalVariables.orderValue = 2.25 + randi_range(0,10)
-	newOrder.emit()
+	if GlobalVariables.doingOrder == false:
+		print("New Order")
+		var pickUp
+		var dropOff
+		pickUp = randi_range(1, restaurants)
+		dropOff = randi_range(14, houses)
+		GlobalVariables.pickDrop = [pickUp, dropOff]
+		GlobalVariables.orderValue = 2.25 + randi_range(0,10)
+		print(GlobalVariables.orderValue)
+		newOrder.emit()
 func _on_order_time_timeout() -> void:
-	if GlobalVariables.Delivering == true:
+	if GlobalVariables.Delivering == true: #and GlobalVariables.selectedOrderValue < 0:
 		_new_order()
 	$orderTime.wait_time = randi_range(1,2)
 	
