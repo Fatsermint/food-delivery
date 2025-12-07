@@ -48,6 +48,16 @@ func _on_h_slider_slider_changed(value: float) -> void:
 	print(skinColorSlider.value)
 
 
-func _on_h_slider_2_value_changed(value: float) -> void:
-	print(hairColorSlider.value)
+
+
+@onready var colorP: ColorPickerButton = $ColorRect/ColorPickerButton
+
+func _on_color_picker_button_color_changed(color: Color) -> void:
+	print(colorP.color)
+	print($Body/Skeleton3D/Body_010.material_override.albedo_color)
 	
+	$Body/Skeleton3D/Body_010.material_override.albedo_color = colorP.color
+
+
+func _on_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://Scenes/main.tscn")

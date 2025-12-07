@@ -1,4 +1,4 @@
-[gd_scene load_steps=80 format=4 uid="uid://oqx0mjd5qd75"]
+[gd_scene load_steps=82 format=4 uid="uid://oqx0mjd5qd75"]
 
 [ext_resource type="Script" uid="uid://jnb0g4s3bjqj" path="res://Scenes/control.gd" id="1_cgmvo"]
 [ext_resource type="Texture2D" uid="uid://c8nea6xmssid0" path="res://images/PHOYO.jpg" id="2_vh8u0"]
@@ -22,7 +22,6 @@ shadow_color = Color(0, 0, 0, 0.69803923)
 shadow_size = 3
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wpaqk"]
-albedo_texture = ExtResource("3_vh8u0")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kv6ij"]
 resource_name = "Color"
@@ -1327,12 +1326,41 @@ bind/43/name = &""
 bind/43/bone = -1
 bind/43/pose = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btyrf"]
+bg_color = Color(0.3822, 0.98, 0.47186992, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.38039216, 0.98039216, 0.47058824, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dqysy"]
+bg_color = Color(0, 0.98, 0.14699987, 1)
+border_width_left = 9
+border_width_top = 9
+border_width_right = 9
+border_width_bottom = 9
+border_color = Color(0.14117648, 0.27058825, 0.16078432, 1)
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
+
 [node name="Control" type="Node"]
 script = ExtResource("1_cgmvo")
 
 [node name="Phoyo" type="Sprite2D" parent="."]
-position = Vector2(735.81134, 323.5)
-scale = Vector2(0.6, 0.6)
+position = Vector2(769, 325)
+scale = Vector2(0.5217217, 0.5217217)
 texture = ExtResource("2_vh8u0")
 region_enabled = true
 region_rect = Rect2(528.17816, 49.14151, 1282.7239, 999.77014)
@@ -1929,7 +1957,7 @@ mesh = SubResource("ArrayMesh_mupi7")
 skin = SubResource("Skin_sjmnu")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3764986, 1.6019219, 2.067122)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6151508, 1.6019219, 2.067122)
 current = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -1946,42 +1974,17 @@ offset_bottom = -25.0
 grow_vertical = 0
 color = Color(0, 0, 0, 0.3372549)
 
-[node name="Label" type="Label" parent="ColorRect"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -38.0
-offset_right = 38.0
-offset_bottom = 23.0
-grow_horizontal = 2
-text = "Skin color"
-
-[node name="HSlider" type="HSlider" parent="ColorRect"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -148.5
-offset_top = 21.0
-offset_right = 151.5
-offset_bottom = 37.0
-grow_horizontal = 2
-max_value = 1.0
-step = 0.01
-value = 1.0
-
 [node name="Label2" type="Label" parent="ColorRect"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -38.0
-offset_top = 43.0
-offset_right = 38.0
-offset_bottom = 66.0
+offset_left = -85.0
+offset_right = 85.0
+offset_bottom = 50.0
 grow_horizontal = 2
-text = "Hair color"
+theme_override_font_sizes/font_size = 36
+text = "Skin color"
 
 [node name="ColorPickerButton" type="ColorPickerButton" parent="ColorRect"]
 layout_mode = 1
@@ -2212,4 +2215,24 @@ skeleton = NodePath("../..")
 [node name="Creative_Character_free" parent="." instance=ExtResource("4_wpaqk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 10)
 
-[connection signal="value_changed" from="ColorRect/HSlider" to="." method="_on_h_slider_slider_changed"]
+[node name="Button" type="Button" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -120.0
+offset_top = -57.0
+offset_right = 278.0
+offset_bottom = 138.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.25, 0.25)
+theme_override_colors/font_color = Color(0.1911, 0.49, 0.23593496, 1)
+theme_override_font_sizes/font_size = 128
+theme_override_styles/normal = SubResource("StyleBoxFlat_btyrf")
+theme_override_styles/hover = SubResource("StyleBoxFlat_dqysy")
+text = "Ready"
+
+[connection signal="color_changed" from="ColorRect/ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
