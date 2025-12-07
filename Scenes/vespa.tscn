@@ -165,7 +165,7 @@ mesh = SubResource("ArrayMesh_ok85g")
 skeleton = NodePath("")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-0.99991775, 0, -0.012827729, -0.005516012, 0.9028256, 0.42997155, 0.011581202, 0.43000692, -0.9027513, 0, 3, -10)
+transform = Transform3D(-0.99991775, 0, -0.012827729, -0.005516012, 0.9028256, 0.42997155, 0.011581202, 0.43000692, -0.9027513, 0, 3, -1.06)
 cull_mask = 524287
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

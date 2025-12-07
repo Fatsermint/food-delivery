@@ -8,9 +8,3 @@ func _physics_process(delta: float) -> void:
 	var acceleration = Input.get_axis("down", "forward") * 100
 	var rpm = $VehicleWheel3D.get_rpm()
 	$VehicleWheel3D.engine_force = acceleration * max_torque * (1 - rpm / max_rpm)
-
-
-func _on_control_on_player_ready(player: Node3D) -> void:
-	print(player)
-	add_child(player)
-	player.global_position = $Circle.global_position
