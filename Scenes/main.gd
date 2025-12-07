@@ -15,7 +15,9 @@ func _ready() -> void:
 
 	$orderTime.wait_time = randi_range(1,2)
 func _process(delta: float) -> void:
+	
 	if Input.is_action_just_pressed("DO"):
+		droppingArea = map.get_dropping_area()
 		print(pickingArea.get_overlapping_bodies())
 		if pickingArea.get_overlapping_bodies().has(vespa):
 			print("pick up") 
@@ -34,7 +36,7 @@ func _new_order():
 		var pickUp
 		var dropOff
 		pickUp = randi_range(1, restaurants)
-		dropOff = randi_range(14, houses)
+		dropOff = randi_range(1, houses)
 		GlobalVariables.pickDrop = [pickUp, dropOff]
 		GlobalVariables.orderValue = 2.25 + randi_range(0,10)
 		print(GlobalVariables.orderValue)

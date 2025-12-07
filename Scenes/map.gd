@@ -1,12 +1,19 @@
 extends Node3D
 
-@onready var d = $"Houses/14/DropArea"
+@onready var d = $"Houses"
 
 @onready var p = $"Open Truck/pickingArea"
 func get_picking_area():
+	
 	return p
 func get_dropping_area():
-	return d
+	if d.find_child(str(GlobalVariables.selecterpicDrop[1])):
+		print("aaaa")
+		var almost = $Houses.get_node(str(GlobalVariables.selecterpicDrop[1]))
+		var droppingArea = almost.get_node("DropArea")
+		print(droppingArea, "a")
+		return droppingArea
+	
 
 
 func _on_order_picked() -> void:

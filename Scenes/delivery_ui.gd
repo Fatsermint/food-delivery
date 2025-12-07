@@ -64,7 +64,8 @@ func _on_main_order_dropped() -> void:
 	$Label2/AnimationPlayer.play("show")
 	$Label2/Timer.start()
 	GlobalVariables.doingOrder = false
-
+	$CurrentOrder/Label.text = ""
+	$CurrentOrder/Label2.text = ""
 func _on_timer_timeout() -> void:
 	$Label2/AnimationPlayer.play("hide")
 	$Label2.visible_ratio = 0
