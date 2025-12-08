@@ -1,5 +1,5 @@
 # Food Delivery
-### #d food delivering simulator made with Godot
+### 3D food delivering simulator made in Godot
 ## Why I made this?
 I made this for siege week 14 and to learn about game development and godot
 ## Where I can play this. 
